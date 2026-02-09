@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Guide est en route ! | Offre Exclusive Plans 3D | Neoabita</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --coral: #D4603A;
+            --coral-hover: #C25230;
+            --ink: #141210;
+            --charcoal: #1E1C1A;
+            --stone: #2A2826;
+            --warm-100: #FBF9F7;
+            --warm-200: #F5F1ED;
+            --warm-300: #E8E2DC;
+            --warm-400: #B8AFA6;
+            --warm-500: #8A827A;
+            --white: #FFFFFF;
+            --green: #2D8A56;
+            --green-bg: #EDF7F1;
+            --green-border: #C2E0CE;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--ink);
+            background: var(--warm-100);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.02;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 200px;
+        }
+
+        /* NAV */
+        .nav {
+            padding: 0 48px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--warm-100);
+            border-bottom: 1px solid var(--warm-300);
+        }
+
+        .nav img { height: 22px; }
+
+        /* ===== CONFIRMATION — compact ===== */
+        .confirm {
+            padding: 44px 48px 36px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--green-bg) 0%, var(--warm-100) 100%);
+        }
+
+        .confirm-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid var(--green-border);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--green);
+            margin-bottom: 14px;
+            animation: fadeUp 0.4s ease forwards;
+        }
+
+        .confirm-badge svg { width: 16px; height: 16px; stroke: var(--green); stroke-width: 2.5; fill: none; }
+
+        .confirm-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(24px, 2.6vw, 38px);
+            font-weight: 400;
+            color: var(--ink);
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeUp 0.5s ease 0.08s forwards;
+        }
+
+        .confirm-text {
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--warm-500);
+            font-weight: 300;
+            max-width: 480px;
+            margin: 0 auto 14px;
+            opacity: 0;
+            animation: fadeUp 0.5s ease 0.16s forwards;
+        }
+
+        .spam-notice {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #FFFCF2;
+            border: 1px solid #F0E4C0;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #8D6E1F;
+            opacity: 0;
+            animation: fadeUp 0.5s ease 0.24s forwards;
+        }
+
+        /* ===== OFFER ELEVATION CARD ===== */
+        .offer-elevation {
+            padding: 32px 48px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .offer-card {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--ink);
+            border-radius: 24px;
+            padding: 48px 40px 44px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(20,18,16,0.2), 0 8px 28px rgba(20,18,16,0.12);
+            /* Elevation effect */
+            transform: translateY(-20px);
+            animation: elevate 0.7s ease 0.3s forwards;
+        }
+
+        @keyframes elevate {
+            from { transform: translateY(0); opacity: 0.9; }
+            to { transform: translateY(-20px); opacity: 1; }
+        }
+
+        .offer-card::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(212,96,58,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .offer-exclusive {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212, 96, 58, 0.1);
+            border: 1px solid rgba(212, 96, 58, 0.2);
+            padding: 7px 16px;
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 20px;
+        }
+
+        .offer-exclusive::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: var(--coral);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .offer-arrow {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .offer-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(24px, 2.8vw, 40px);
+            font-weight: 400;
+            line-height: 1.15;
+            color: white;
+            margin-bottom: 6px;
+        }
+
+        .offer-title em { font-style: italic; color: var(--coral); }
+
+        .offer-sub {
+            font-size: 14px;
+            color: rgba(255,255,255,0.4);
+            font-weight: 300;
+            margin-bottom: 28px;
+        }
+
+        /* Timer */
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .timer-block { text-align: center; }
+
+        .timer-val {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 500;
+            color: white;
+            line-height: 1;
+            min-width: 56px;
+            display: block;
+        }
+
+        .timer-lbl {
+            font-size: 9px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.25);
+            margin-top: 6px;
+        }
+
+        .timer-sep {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: rgba(255,255,255,0.12);
+            line-height: 1;
+        }
+
+        .offer-cta-btn {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--coral);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+
+        .offer-cta-btn:hover {
+            background: var(--coral-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 36px rgba(212, 96, 58, 0.3);
+        }
+
+        .offer-small { font-size: 11px; color: rgba(255,255,255,0.25); margin-top: 12px; font-weight: 300; }
+
+        /* ===== VIDEO SECTION ===== */
+        .video-section {
+            padding: 56px 48px;
+            background: var(--warm-100);
+        }
+
+        .video-section-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .video-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(20px, 2vw, 28px);
+            font-weight: 400;
+            text-align: center;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .video-section-title em { font-style: italic; color: var(--coral); }
+
+        .video-section-sub {
+            font-size: 14px;
+            color: var(--warm-500);
+            text-align: center;
+            font-weight: 300;
+            margin-bottom: 28px;
+        }
+
+        .video-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 64px rgba(0,0,0,0.1);
+            aspect-ratio: 1 / 1;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 178%;
+            height: 178%;
+            transform: translate(-50%, -50%);
+            border: none;
+        }
+
+        .video-hint {
+            text-align: center;
+            margin-top: 14px;
+            font-size: 12px;
+            color: var(--warm-400);
+            font-weight: 300;
+        }
+
+        .video-hint svg {
+            width: 13px; height: 13px;
+            stroke: var(--warm-400);
+            vertical-align: -2px;
+            margin-right: 3px;
+            fill: none;
+        }
+
+        /* ===== 3D GALLERY ===== */
+        .gallery-3d {
+            padding: 0 48px 64px;
+        }
+
+        .gallery-3d-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .gallery-3d-label {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .gallery-3d-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .gallery-3d-grid img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-3d-grid img:hover { transform: scale(1.04); }
+
+        /* ===== BENEFITS + EXPERT CTA ===== */
+        .benefits-section {
+            padding: 80px 48px;
+            background: var(--ink);
+        }
+
+        .benefits-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        .benefits-left {}
+
+        .benefits-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 400;
+            color: white;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .benefits-heading em { font-style: italic; color: var(--coral); }
+
+        .benefits-sub-text {
+            font-size: 14px;
+            color: rgba(255,255,255,0.4);
+            font-weight: 300;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .benefits-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .benefit-check {
+            width: 26px; height: 26px;
+            background: rgba(212, 96, 58, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .benefit-check svg { width: 12px; height: 12px; stroke: var(--coral); stroke-width: 2.5; fill: none; }
+
+        .benefit-text {
+            font-size: 14px;
+            line-height: 1.55;
+            color: rgba(255,255,255,0.65);
+            font-weight: 300;
+        }
+
+        .benefit-text strong { color: white; font-weight: 500; }
+
+        /* Expert card */
+        .expert-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 24px;
+            padding: 40px 28px;
+            text-align: center;
+        }
+
+        .expert-photo {
+            width: 84px; height: 84px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.08);
+            margin-bottom: 14px;
+        }
+
+        .expert-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 3px;
+        }
+
+        .expert-role {
+            font-size: 12px;
+            color: rgba(255,255,255,0.35);
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+
+        .cta-btn {
+            display: block;
+            width: 100%;
+            padding: 18px 24px;
+            background: var(--coral);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .cta-btn:hover {
+            background: var(--coral-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 36px rgba(212, 96, 58, 0.3);
+        }
+
+        .cta-small { font-size: 11px; color: rgba(255,255,255,0.22); margin-top: 12px; font-weight: 300; }
+
+        .delivery-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 18px;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .delivery-badge svg { width: 15px; height: 15px; stroke: var(--coral); stroke-width: 2; fill: none; flex-shrink: 0; }
+        .delivery-badge span { font-size: 11px; color: rgba(255,255,255,0.45); font-weight: 300; }
+        .delivery-badge strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+
+        /* ===== REALISATIONS ===== */
+        .realisations {
+            padding: 80px 48px;
+            background: var(--white);
+        }
+
+        .section-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+
+        .eyebrow-line { width: 24px; height: 1px; background: var(--coral); }
+
+        .eyebrow-text {
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--coral);
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(24px, 2.4vw, 38px);
+            font-weight: 400;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 48px;
+            color: var(--ink);
+        }
+
+        .section-title em { font-style: italic; color: var(--coral); }
+
+        .real-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .real-card {
+            border-radius: 18px;
+            overflow: hidden;
+            background: var(--warm-100);
+            border: 1px solid var(--warm-300);
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .real-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.06);
+            border-color: transparent;
+        }
+
+        .real-card img { width: 100%; height: 240px; object-fit: cover; display: block; }
+
+        .real-body { padding: 20px; }
+        .real-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+        .real-price { font-size: 13px; font-weight: 500; color: var(--coral); margin-bottom: 8px; }
+        .real-quote { font-size: 12.5px; line-height: 1.6; color: var(--warm-500); font-weight: 300; font-style: italic; }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            padding: 80px 48px;
+            background: var(--warm-100);
+        }
+
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .testi-card {
+            background: var(--white);
+            border-radius: 18px;
+            padding: 32px;
+            border: 1px solid var(--warm-300);
+            transition: all 0.4s ease;
+        }
+
+        .testi-card:hover { border-color: transparent; box-shadow: 0 10px 36px rgba(0,0,0,0.04); }
+
+        .testi-stars { color: #EAA020; font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+        .testi-quote { font-size: 13.5px; line-height: 1.75; color: var(--ink); font-weight: 300; font-style: italic; margin-bottom: 16px; }
+        .testi-author { font-size: 13px; font-weight: 500; color: var(--ink); }
+        .testi-role { font-size: 11px; color: var(--warm-500); font-weight: 300; }
+
+        /* ===== FINAL CTA ===== */
+        .final-cta {
+            padding: 80px 48px;
+            text-align: center;
+            background: var(--charcoal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            bottom: -120px; left: 50%;
+            transform: translateX(-50%);
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(212,96,58,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .final-cta .section-title { color: white; margin-bottom: 10px; }
+
+        .final-cta-sub {
+            font-size: 14px;
+            color: rgba(255,255,255,0.4);
+            font-weight: 300;
+            max-width: 440px;
+            margin: 0 auto 32px;
+            line-height: 1.65;
+        }
+
+        .final-cta .cta-btn { max-width: 360px; margin: 0 auto; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 24px 48px;
+            background: var(--ink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .footer img { height: 15px; opacity: 0.2; filter: brightness(3); }
+        .footer span { font-size: 11px; color: rgba(255,255,255,0.18); font-weight: 300; }
+
+        /* ===== KEYFRAMES ===== */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        .sr { opacity: 0; transform: translateY(24px); transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+        .sr.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== RESPONSIVE — MOBILE CRITICAL ===== */
+        @media (max-width: 1024px) {
+            .nav { padding: 0 20px; height: 56px; }
+            .nav img { height: 20px; }
+
+            /* Confirmation compact */
+            .confirm { padding: 28px 20px 24px; }
+            .confirm-badge { font-size: 12px; padding: 7px 14px; margin-bottom: 10px; }
+            .confirm-title { font-size: 22px; margin-bottom: 8px; }
+            .confirm-text { font-size: 13px; margin-bottom: 10px; }
+            .spam-notice { font-size: 11px; padding: 7px 12px; }
+
+            /* Offer card — VISIBLE IMMEDIATELY */
+            .offer-elevation { padding: 20px 16px 0; }
+            .offer-card { padding: 32px 20px 28px; border-radius: 20px; }
+            .offer-exclusive { font-size: 9px; padding: 6px 12px; margin-bottom: 14px; }
+            .offer-arrow { font-size: 12px; margin-bottom: 8px; }
+            .offer-title { font-size: 22px; }
+            .offer-sub { font-size: 13px; margin-bottom: 20px; }
+            .timer { gap: 12px; margin-bottom: 22px; }
+            .timer-val { font-size: 32px; min-width: 44px; }
+            .timer-sep { font-size: 28px; }
+            .timer-lbl { font-size: 8px; }
+            .offer-cta-btn { padding: 16px 28px; font-size: 14px; width: 100%; display: block; }
+
+            /* Video */
+            .video-section { padding: 40px 16px; }
+            .video-container { border-radius: 16px; }
+
+            /* 3D Gallery */
+            .gallery-3d { padding: 0 16px 48px; }
+            .gallery-3d-grid { grid-template-columns: 1fr; border-radius: 14px; }
+            .gallery-3d-grid img { height: 200px; }
+
+            /* Benefits */
+            .benefits-section { padding: 56px 20px; }
+            .benefits-inner { grid-template-columns: 1fr; gap: 32px; }
+            .benefits-heading { font-size: 22px; }
+
+            /* Realisations */
+            .realisations { padding: 56px 20px; }
+            .real-grid { grid-template-columns: 1fr; }
+            .real-card img { height: 200px; }
+
+            /* Testimonials */
+            .testimonials { padding: 56px 20px; }
+            .testi-grid { grid-template-columns: 1fr; }
+
+            /* Final CTA */
+            .final-cta { padding: 56px 20px; }
+
+            .footer { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <img src="images/LOGO_NEOABITA.png" alt="Neoabita">
+    </nav>
+
+    <!-- ===== CONFIRMATION — compact ===== -->
+    <section class="confirm">
+        <div class="confirm-badge">
+            <svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Guide envoyé avec succès
+        </div>
+        <h1 class="confirm-title">Votre guide est en route !</h1>
+        <p class="confirm-text">Consultez votre boîte de réception pour découvrir le guide des tendances architecturales 2026.</p>
+        <div class="spam-notice">⚠️ Vérifiez votre dossier spam si vous ne le voyez pas.</div>
+    </section>
+
+    <!-- ===== OFFER CARD — elevated, immediately visible ===== -->
+    <div class="offer-elevation">
+        <div class="offer-card">
+            <div class="offer-exclusive">Offre exclusive à durée limitée</div>
+            <div class="offer-arrow">➡️ Vous venez également de débloquer une offre exclusive 👇</div>
+            <h2 class="offer-title">Des plans 3D ultra-réalistes<br><em>offerts</em> pour votre projet</h2>
+            <p class="offer-sub">Conçus par nos architectes · Intérieurs & extérieurs</p>
+
+            <div class="timer">
+                <div class="timer-block">
+                    <span class="timer-val" id="h">00</span>
+                    <div class="timer-lbl">Heures</div>
+                </div>
+                <span class="timer-sep">:</span>
+                <div class="timer-block">
+                    <span class="timer-val" id="m">05</span>
+                    <div class="timer-lbl">Minutes</div>
+                </div>
+                <span class="timer-sep">:</span>
+                <div class="timer-block">
+                    <span class="timer-val" id="s">00</span>
+                    <div class="timer-lbl">Secondes</div>
+                </div>
+            </div>
+
+            <a href="#video-section" class="offer-cta-btn">Découvrir l'offre en vidéo 👇</a>
+            <div class="offer-small">Appel de 15 min · Sans engagement</div>
+        </div>
+    </div>
+
+    <!-- ===== VIDEO ===== -->
+    <section class="video-section" id="video-section">
+        <div class="video-section-inner">
+            <h3 class="video-section-title">Rémi vous explique <em>l'offre</em></h3>
+            <p class="video-section-sub">Notre expert construction vous détaille ce que vous allez recevoir.</p>
+            <div class="video-container">
+                <iframe
+                    src="https://player.vimeo.com/video/1139569851?autoplay=0&title=0&byline=0&portrait=0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="video-hint">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                Activez le son pour découvrir l'offre
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 3D GALLERY ===== -->
+    <section class="gallery-3d sr">
+        <div class="gallery-3d-inner">
+            <div class="gallery-3d-label">
+                <div class="section-eyebrow">
+                    <span class="eyebrow-line"></span>
+                    <span class="eyebrow-text">Exemples de plans 3D</span>
+                    <span class="eyebrow-line"></span>
+                </div>
+            </div>
+            <div class="gallery-3d-grid">
+                <img src="images/VIlla_jolie_plans_3D.jpeg" alt="Plans 3D villa">
+                <img src="images/villa-3d-realiste.png" alt="Rendu 3D réaliste">
+                <img src="images/villa-1.png" alt="Villa 3D extérieur">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BENEFITS + EXPERT CTA ===== -->
+    <section class="benefits-section">
+        <div class="benefits-inner">
+            <div class="benefits-left sr">
+                <div class="section-eyebrow" style="justify-content:flex-start; margin-bottom:14px;">
+                    <span class="eyebrow-line" style="background:rgba(255,255,255,0.2);"></span>
+                    <span class="eyebrow-text">Ce que vous obtiendrez</span>
+                </div>
+                <h3 class="benefits-heading">Un expert prendra contact avec vous pour :</h3>
+                <p class="benefits-sub-text">Nos meilleurs experts en construction haut de gamme travailleront personnellement sur votre projet.</p>
+
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-check"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="benefit-text"><strong>Recueillir les informations utiles</strong> : référence cadastrale, taille du terrain, dimension de votre future villa.</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-check"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="benefit-text"><strong>Analyse technique de votre terrain</strong> et étude de faisabilité (Étude G2PRO).</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-check"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="benefit-text"><strong>Définir vos besoins et exigences</strong> pour créer les plans 3D ultra-réalistes de votre future maison de rêve.</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-check"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="benefit-text"><strong>Conseil sur les contrats</strong> (MOE, CMI, CMI HEHA...) pour choisir celui qui vous protège vraiment.</div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-check"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="benefit-text"><strong>Chiffrage précis (€)</strong> dans un dossier complet incluant vos vues 3D intérieures & extérieures.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sr">
+                <div class="expert-card">
+                    <img src="images/remi-agrain.png" alt="Rémi Agrain" class="expert-photo">
+                    <div class="expert-name">Rémi Agrain</div>
+                    <div class="expert-role">Expert en construction haut de gamme</div>
+                    <a href="https://app.iclosed.io/e/neoabita/validez-votre-offre-exclusive" class="cta-btn" target="_blank">
+                        Je veux mes plans 3D gratuits
+                    </a>
+                    <div class="cta-small">Appel de 15 min · Sans engagement</div>
+                    <div class="delivery-badge">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <span>Plans 3D livrés sous <strong>5 jours</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== REALISATIONS ===== -->
+    <section class="realisations sr">
+        <div class="section-eyebrow">
+            <span class="eyebrow-line"></span>
+            <span class="eyebrow-text">Nos réalisations</span>
+            <span class="eyebrow-line"></span>
+        </div>
+        <h2 class="section-title">Plus de 100 villas de luxe <em>construites</em></h2>
+
+        <div class="real-grid">
+            <div class="real-card">
+                <img src="images/Neoabita-07-25-21.jpg" alt="Villa">
+                <div class="real-body">
+                    <div class="real-name">Projet de Matthieu & Claudie</div>
+                    <div class="real-price">990 000 €</div>
+                    <div class="real-quote">"Permis obtenu en 3 mois, maison construite en 10 mois. 100% satisfaits !"</div>
+                </div>
+            </div>
+            <div class="real-card">
+                <img src="images/villa_jolie_realisation.jpeg" alt="Villa">
+                <div class="real-body">
+                    <div class="real-name">Projet d'Élodie & Clément</div>
+                    <div class="real-price">1 490 000 €</div>
+                    <div class="real-quote">"Villa connectée de 300m² construite dans un temps record."</div>
+                </div>
+            </div>
+            <div class="real-card">
+                <img src="images/realisation-4.jpg" alt="Villa">
+                <div class="real-body">
+                    <div class="real-name">Projet de Nicolas & Christel</div>
+                    <div class="real-price">1 090 000 €</div>
+                    <div class="real-quote">"Un vrai service plus avec architecte intérieur et conseils très pro."</div>
+                </div>
+            </div>
+            <div class="real-card">
+                <img src="images/realisation-6.jpg" alt="Intérieur">
+                <div class="real-body">
+                    <div class="real-name">Projet de Kathleen & Sylvain</div>
+                    <div class="real-price">1 370 000 €</div>
+                    <div class="real-quote">"Professionnalisme hors pair, de la conception à la concrétisation."</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials sr">
+        <div class="section-eyebrow">
+            <span class="eyebrow-line"></span>
+            <span class="eyebrow-text">Ils nous font confiance</span>
+            <span class="eyebrow-line"></span>
+        </div>
+        <h2 class="section-title">Ce que nos clients <em>disent</em></h2>
+
+        <div class="testi-grid">
+            <div class="testi-card">
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-quote">"Nous avons signé notre contrat en avril 2022 et le permis a été obtenu en moins de 3 mois, et notre maison construite en à peine 10 mois. Nous recommandons à 200%."</p>
+                <div class="testi-author">Jérémy Chareyron</div>
+                <div class="testi-role">Propriétaire d'une villa Neoabita</div>
+            </div>
+            <div class="testi-card">
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-quote">"Face aux embûches de l'urbanisme, il fallait toute la détermination et le savoir-faire de l'équipe NEOABITA. Un professionnalisme hors pair !"</p>
+                <div class="testi-author">Bernard Garcia</div>
+                <div class="testi-role">Propriétaire d'une villa Neoabita</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section class="final-cta" id="formulaire">
+        <div class="section-eyebrow" style="margin-bottom:14px;">
+            <span class="eyebrow-line" style="background:rgba(255,255,255,0.2);"></span>
+            <span class="eyebrow-text">Dernière étape</span>
+            <span class="eyebrow-line" style="background:rgba(255,255,255,0.2);"></span>
+        </div>
+        <h2 class="section-title" style="color:white;">Transformez votre vision<br>en <em>réalité</em></h2>
+        <p class="final-cta-sub">Nos experts dessineront vos plans 3D ultra-réalistes, 100% adaptés à vos attentes. Dossier complet livré sous 5 jours.</p>
+        <a href="https://app.iclosed.io/e/neoabita/validez-votre-offre-exclusive" class="cta-btn" target="_blank" style="max-width:360px; margin:0 auto;">
+            Réserver mon appel · Plans 3D offerts
+        </a>
+    </section>
+
+    <footer class="footer">
+        <img src="images/LOGO_NEOABITA.png" alt="Neoabita">
+        <span>© 2026 Neoabita · Tous droits réservés</span>
+    </footer>
+
+    <script>
+        // Timer
+        let t = 5 * 60;
+        function tick() {
+            const hh = Math.floor(t / 3600), mm = Math.floor((t % 3600) / 60), ss = t % 60;
+            document.getElementById('h').textContent = String(hh).padStart(2, '0');
+            document.getElementById('m').textContent = String(mm).padStart(2, '0');
+            document.getElementById('s').textContent = String(ss).padStart(2, '0');
+            if (t > 0) { t--; setTimeout(tick, 1000); }
+        }
+        tick();
+
+        // Scroll reveal
+        const obs = new IntersectionObserver((e) => {
+            e.forEach(en => { if (en.isIntersecting) en.target.classList.add('visible'); });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.sr').forEach((el, i) => {
+            el.style.transitionDelay = `${Math.min(i * 0.05, 0.3)}s`;
+            obs.observe(el);
+        });
+    </script>
+
+</body>
+</html>
