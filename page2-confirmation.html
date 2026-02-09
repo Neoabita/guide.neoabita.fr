@@ -313,20 +313,89 @@
             border: none;
         }
 
-        .video-hint {
-            text-align: center;
-            margin-top: 14px;
-            font-size: 12px;
-            color: var(--warm-400);
-            font-weight: 300;
+        /* Video overlay controls */
+        .video-ctrl-sound {
+            position: absolute;
+            bottom: 14px;
+            left: 14px;
+            z-index: 5;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(20, 18, 16, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
         }
 
-        .video-hint svg {
-            width: 13px; height: 13px;
-            stroke: var(--warm-400);
-            vertical-align: -2px;
-            margin-right: 3px;
+        .video-ctrl-sound:hover {
+            background: rgba(20, 18, 16, 0.9);
+            transform: scale(1.08);
+        }
+
+        .video-ctrl-sound svg {
+            width: 18px;
+            height: 18px;
+            stroke: white;
+            stroke-width: 2;
             fill: none;
+        }
+
+        .video-ctrl-time {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            z-index: 5;
+            background: rgba(20, 18, 16, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 100px;
+            padding: 6px 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+            letter-spacing: 0.03em;
+        }
+
+        /* iClosed embed */
+        .iclosed-section {
+            padding: 0 48px 64px;
+        }
+
+        .iclosed-section-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .iclosed-section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(20px, 2vw, 26px);
+            font-weight: 400;
+            text-align: center;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+
+        .iclosed-section-title em { font-style: italic; color: var(--coral); }
+
+        .iclosed-section-sub {
+            font-size: 13px;
+            color: var(--warm-500);
+            text-align: center;
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+
+        .iclosed-widget {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            border: 1px solid var(--warm-300);
         }
 
         /* ===== 3D GALLERY ===== */
@@ -681,6 +750,12 @@
             /* Video */
             .video-section { padding: 40px 16px; }
             .video-container { border-radius: 16px; }
+            .video-ctrl-sound { width: 36px; height: 36px; bottom: 10px; left: 10px; }
+            .video-ctrl-sound svg { width: 15px; height: 15px; }
+            .video-ctrl-time { top: 10px; right: 10px; font-size: 11px; padding: 5px 10px; }
+
+            /* iClosed */
+            .iclosed-section { padding: 0 16px 48px; }
 
             /* 3D Gallery */
             .gallery-3d { padding: 0 16px 48px; }
@@ -762,15 +837,29 @@
             <p class="video-section-sub">Notre expert construction vous détaille ce que vous allez recevoir.</p>
             <div class="video-container">
                 <iframe
-                    src="https://player.vimeo.com/video/1139569851?autoplay=0&title=0&byline=0&portrait=0"
+                    id="vimeoPlayer"
+                    src="https://player.vimeo.com/video/1139569851?autoplay=1&muted=1&title=0&byline=0&portrait=0&controls=0&loop=0"
                     allow="autoplay; fullscreen; picture-in-picture"
                     allowfullscreen>
                 </iframe>
+                <button class="video-ctrl-sound" id="soundBtn" onclick="toggleSound()">
+                    <svg id="iconMuted" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+                    <svg id="iconSound" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                </button>
+                <div class="video-ctrl-time" id="timeLeft">--:--</div>
             </div>
-            <div class="video-hint">
-                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-                Activez le son pour découvrir l'offre
-            </div>
+        </div>
+    </section>
+
+    <!-- ===== ICLOSED BOOKING ===== -->
+    <section class="iclosed-section">
+        <div class="iclosed-section-inner">
+            <h3 class="iclosed-section-title">Réservez votre <em>appel</em></h3>
+            <p class="iclosed-section-sub">15 minutes avec Rémi · Sans engagement · Plans 3D offerts</p>
+            <!-- iClosed inline widget begin -->
+            <div class="iclosed-widget" data-url="https://app.iclosed.io/e/neoabita/validez-votre-offre-exclusive" title="Validez votre offre exclusive" style="width: 100%; height: 620px"></div>
+            <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
+            <!-- iClosed inline widget end -->
         </div>
     </section>
 
@@ -934,6 +1023,7 @@
         <span>© 2026 Neoabita · Tous droits réservés</span>
     </footer>
 
+    <script src="https://player.vimeo.com/api/player.js"></script>
     <script>
         // Timer
         let t = 5 * 60;
@@ -945,6 +1035,34 @@
             if (t > 0) { t--; setTimeout(tick, 1000); }
         }
         tick();
+
+        // Vimeo Player controls
+        var isMuted = true;
+        var player = new Vimeo.Player(document.getElementById('vimeoPlayer'));
+
+        function toggleSound() {
+            isMuted = !isMuted;
+            player.setMuted(isMuted);
+            document.getElementById('iconMuted').style.display = isMuted ? 'block' : 'none';
+            document.getElementById('iconSound').style.display = isMuted ? 'none' : 'block';
+        }
+
+        function formatTime(sec) {
+            var m = Math.floor(sec / 60);
+            var s = Math.floor(sec % 60);
+            return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+        }
+
+        player.getDuration().then(function(duration) {
+            player.on('timeupdate', function(data) {
+                var remaining = Math.max(0, duration - data.seconds);
+                document.getElementById('timeLeft').textContent = formatTime(remaining);
+            });
+        });
+
+        player.on('ended', function() {
+            document.getElementById('timeLeft').textContent = '00:00';
+        });
 
         // Scroll reveal
         const obs = new IntersectionObserver((e) => {
