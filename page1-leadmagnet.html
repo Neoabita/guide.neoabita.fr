@@ -606,10 +606,8 @@
         .popup-card {
             background: var(--white);
             border-radius: 24px;
-            max-width: 680px;
+            max-width: 480px;
             width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
             position: relative;
             transform: translateY(24px) scale(0.97);
             transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
@@ -622,10 +620,10 @@
 
         .popup-close {
             position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 36px;
-            height: 36px;
+            top: 14px;
+            right: 14px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             background: var(--warm-200);
             border: none;
@@ -638,19 +636,27 @@
         }
 
         .popup-close:hover { background: var(--warm-300); }
-        .popup-close svg { width: 16px; height: 16px; stroke: var(--ink); stroke-width: 2; }
+        .popup-close svg { width: 15px; height: 15px; stroke: var(--ink); stroke-width: 2; }
 
         .popup-header {
-            padding: 40px 36px 0;
+            padding: 36px 32px 0;
             text-align: center;
         }
 
+        .popup-ebook {
+            width: 180px;
+            margin: 0 auto 20px;
+            filter: drop-shadow(0 12px 32px rgba(0,0,0,0.1));
+        }
+
+        .popup-ebook img { width: 100%; height: auto; }
+
         .popup-header h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 400;
             color: var(--ink);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         .popup-header h3 em { font-style: italic; color: var(--coral); }
@@ -659,56 +665,68 @@
             font-size: 14px;
             color: var(--warm-500);
             font-weight: 300;
+            line-height: 1.6;
         }
 
-        .popup-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            padding: 28px 28px 20px;
+        .popup-form-area {
+            padding: 24px 32px 32px;
         }
 
-        .popup-item {
+        .popup-form-row {
+            display: flex;
+            background: var(--warm-100);
             border-radius: 14px;
             overflow: hidden;
-            background: var(--warm-100);
+            border: 1px solid var(--warm-300);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .popup-item img {
-            width: 100%;
-            height: 170px;
-            object-fit: cover;
-            display: block;
+        .popup-form-row:focus-within {
+            border-color: var(--coral);
+            box-shadow: 0 0 0 3px rgba(212, 96, 58, 0.1);
         }
 
-        .popup-item-body { padding: 14px 16px; }
-
-        .popup-item-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 15px;
-            font-weight: 500;
+        .popup-form-row input {
+            flex: 1;
+            padding: 16px 18px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            border: none;
+            outline: none;
+            background: transparent;
             color: var(--ink);
-            margin-bottom: 2px;
+            min-width: 0;
         }
 
-        .popup-item-price {
+        .popup-form-row input::placeholder { color: var(--warm-400); }
+
+        .popup-form-row button {
+            padding: 16px 24px;
+            background: var(--coral);
+            color: white;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
             font-size: 13px;
             font-weight: 500;
-            color: var(--coral);
+            cursor: pointer;
+            transition: background 0.3s ease;
+            white-space: nowrap;
         }
 
-        .popup-footer {
-            padding: 0 28px 28px;
-            text-align: center;
-        }
+        .popup-form-row button:hover { background: var(--coral-hover); }
 
-        .popup-footer-text {
-            font-size: 12px;
+        .popup-reassurance {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 14px;
+            font-size: 11px;
             color: var(--warm-400);
             font-weight: 300;
+            flex-wrap: wrap;
         }
-
-        .popup-footer-text strong { color: var(--warm-500); font-weight: 500; }
 
         /* Discrete link */
         .voir-realisations-link {
@@ -737,12 +755,13 @@
         }
 
         @media (max-width: 1024px) {
-            .popup-card { border-radius: 20px; max-height: 80vh; }
-            .popup-header { padding: 32px 20px 0; }
-            .popup-header h3 { font-size: 22px; }
-            .popup-grid { grid-template-columns: 1fr; padding: 20px 16px 16px; gap: 10px; }
-            .popup-item img { height: 180px; }
-            .popup-footer { padding: 0 16px 20px; }
+            .popup-card { border-radius: 20px; margin: 16px; }
+            .popup-header { padding: 28px 20px 0; }
+            .popup-header h3 { font-size: 21px; }
+            .popup-ebook { width: 150px; margin-bottom: 16px; }
+            .popup-form-area { padding: 20px 20px 24px; }
+            .popup-form-row { flex-direction: column; }
+            .popup-form-row button { border-radius: 0 0 10px 10px; padding: 14px; }
         }
 
         /* ===== KEYFRAMES ===== */
@@ -848,12 +867,6 @@
                         <div class="reassurance-dot"></div>
                         <div class="reassurance-item">100% gratuit</div>
                     </div>
-                    <div style="margin-top:16px; text-align:center;">
-                        <a class="voir-realisations-link" onclick="openPopup()">
-                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-                            Voir nos réalisations
-                        </a>
-                    </div>
                 </div>
             </div>
             <div class="hero-right">
@@ -900,6 +913,12 @@
         <div class="testimonial-strip-inner">
             <p class="testi-quote-text">Ce guide nous a beaucoup aidés pour clarifier nos choix. Les inspirations japonaise et californienne nous ont aussi donné de belles idées, autant sur l'architecture extérieure qu'intérieure !</p>
             <div class="testi-author-line"><strong>Sophie & Marc</strong>, Labéaume</div>
+            <div style="margin-top:20px;">
+                <a class="voir-realisations-link" onclick="scrollThenPopup()">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                    Voir nos réalisations
+                </a>
+            </div>
         </div>
     </section>
 
@@ -957,7 +976,7 @@
     </section>
 
     <!-- ===== GALLERY ===== -->
-    <section class="gallery">
+    <section class="gallery" id="realisations">
         <div class="gallery-label">Nos réalisations</div>
         <div class="gallery-track">
             <img src="images/Neoabita-07-25-21.jpg" alt="Réalisation"><img src="images/villa_jolie_realisation.jpeg" alt="Villa"><img src="images/realisation-6.jpg" alt="Intérieur"><img src="images/realisation-4.jpg" alt="Villa"><img src="images/villa-1.png" alt="3D"><img src="images/villa-2.png" alt="3D"><img src="images/villa-3d-realiste.png" alt="3D"><img src="images/Neoabita-07-25-21.jpg" alt="Réalisation"><img src="images/villa_jolie_realisation.jpeg" alt="Villa"><img src="images/realisation-6.jpg" alt="Intérieur"><img src="images/realisation-4.jpg" alt="Villa"><img src="images/villa-1.png" alt="3D"><img src="images/villa-2.png" alt="3D"><img src="images/villa-3d-realiste.png" alt="3D">
@@ -994,48 +1013,31 @@
         <span>© 2026 Neoabita · Tous droits réservés</span>
     </footer>
 
-    <!-- ===== POPUP RÉALISATIONS ===== -->
+    <!-- ===== POPUP LEAD CAPTURE ===== -->
     <div class="popup-overlay" id="popup">
         <div class="popup-card">
             <button class="popup-close" onclick="closePopup()">
                 <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
             <div class="popup-header">
-                <h3>Nos dernières <em>réalisations</em></h3>
-                <p>Plus de 100 villas haut de gamme construites depuis 2015</p>
+                <div class="popup-ebook">
+                    <img src="images/guide_transparent.svg" alt="Guide Tendances Architecturales 2026">
+                </div>
+                <h3>Recevez votre guide <em>gratuit</em></h3>
+                <p>48 pages d'inspirations extérieures & intérieures pour votre future villa haut de gamme.</p>
             </div>
-            <div class="popup-grid">
-                <div class="popup-item">
-                    <img src="images/Neoabita-07-25-21.jpg" alt="Villa">
-                    <div class="popup-item-body">
-                        <div class="popup-item-name">Projet Matthieu & Claudie</div>
-                        <div class="popup-item-price">990 000 €</div>
-                    </div>
+            <div class="popup-form-area">
+                <form class="popup-form-row" onsubmit="handleSubmit(event)">
+                    <input type="email" placeholder="Votre adresse email" required>
+                    <button type="submit">Recevoir le guide</button>
+                </form>
+                <div class="popup-reassurance">
+                    <span>🔒 100% sécurisé</span>
+                    <span>·</span>
+                    <span>Garanti sans publicité</span>
+                    <span>·</span>
+                    <span>100% gratuit</span>
                 </div>
-                <div class="popup-item">
-                    <img src="images/villa_jolie_realisation.jpeg" alt="Villa">
-                    <div class="popup-item-body">
-                        <div class="popup-item-name">Projet Élodie & Clément</div>
-                        <div class="popup-item-price">1 490 000 €</div>
-                    </div>
-                </div>
-                <div class="popup-item">
-                    <img src="images/realisation-4.jpg" alt="Villa">
-                    <div class="popup-item-body">
-                        <div class="popup-item-name">Projet Nicolas & Christel</div>
-                        <div class="popup-item-price">1 090 000 €</div>
-                    </div>
-                </div>
-                <div class="popup-item">
-                    <img src="images/realisation-6.jpg" alt="Villa">
-                    <div class="popup-item-body">
-                        <div class="popup-item-name">Projet Kathleen & Sylvain</div>
-                        <div class="popup-item-price">1 370 000 €</div>
-                    </div>
-                </div>
-            </div>
-            <div class="popup-footer">
-                <p class="popup-footer-text"><strong>20 projets exclusifs par an</strong> · Budgets de 800K€ à 3M€+</p>
             </div>
         </div>
     </div>
@@ -1058,6 +1060,12 @@
         function closePopup() {
             document.getElementById('popup').classList.remove('active');
             document.body.style.overflow = '';
+        }
+
+        function scrollThenPopup() {
+            document.getElementById('realisations').scrollIntoView({ behavior: 'smooth' });
+            popupShown = true;
+            setTimeout(openPopup, 1500);
         }
 
         // Close on overlay click
